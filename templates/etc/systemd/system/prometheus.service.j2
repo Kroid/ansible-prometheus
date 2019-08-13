@@ -1,0 +1,13 @@
+[Unit]
+Description="Prometheus"
+After=network.target
+
+[Service]
+User={{ ansible_user }}
+Group={{ ansible_user }}
+Environment=LANG=en_US.UTF-8,LC_ALL=en_US.UTF-8
+ExecStart={{ prometheus_install_path }}/prometheus --config.file={{ prometheus_install_path }}/prometheus.yml --storage.tsdb.path {{ prometheus_data_path }}
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

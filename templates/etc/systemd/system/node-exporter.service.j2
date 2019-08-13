@@ -1,0 +1,13 @@
+[Unit]
+Description="Prometheus node-exporter"
+After=network.target
+
+[Service]
+User={{ ansible_user }}
+Group={{ ansible_user }}
+Environment=LANG=en_US.UTF-8,LC_ALL=en_US.UTF-8
+ExecStart={{ prometheus_node_exporter_install_path }}/node_exporter
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

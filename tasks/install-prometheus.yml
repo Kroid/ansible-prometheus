@@ -21,3 +21,11 @@
   file:
     path: '/home/{{ ansible_user }}/{{ prometheus_archive_name }}'
     state: absent
+
+- name: Add prometheus.service to systemd
+  template:
+    src: etc/systemd/system/prometheus.service.j2
+    dest: /etc/systemd/system/prometheus.service
+  become: True
+  notify:
+    - reload systemd

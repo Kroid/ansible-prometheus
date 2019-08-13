@@ -1,5 +1,6 @@
 # ansible-playbook test.yml -i test.hosts
 # ./prometheus/prometheus --config.file=./prometheus/prometheus.yml --storage.tsdb.path ./prometheus/data
+# sudo systemctl start prometheus
 
 - hosts: all
   # become: True

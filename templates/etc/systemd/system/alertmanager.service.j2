@@ -1,0 +1,13 @@
+[Unit]
+Description="Prometheus alertmanager"
+After=network.target
+
+[Service]
+User={{ ansible_user }}
+Group={{ ansible_user }}
+Environment=LANG=en_US.UTF-8,LC_ALL=en_US.UTF-8
+ExecStart={{ prometheus_alertmanager_install_path }}/alertmanager --storage.path={{ prometheus_alertmanager_data_path }}
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

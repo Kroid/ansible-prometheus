@@ -21,3 +21,11 @@
   file:
     path: '/home/{{ ansible_user }}/{{ prometheus_node_exporter_archive_name }}'
     state: absent
+
+- name: Add node-exporter.service to systemd
+  template:
+    src: etc/systemd/system/node-exporter.service.j2
+    dest: /etc/systemd/system/node-exporter.service
+  become: True
+  notify:
+    - reload systemd
