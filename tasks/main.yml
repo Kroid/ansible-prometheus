@@ -1,0 +1,13 @@
+---
+
+- name: install prometheus
+  include: install-prometheus.yml
+  when: '"prometheus" in prometheus_install_components'
+
+- name: install node-exporter
+  include: install-node-exporter.yml
+  when: '"node_exporter" in prometheus_install_components'
+
+- name: install alertmanager
+  include: install-alertmanager.yml
+  when: '"alertmanager" in prometheus_install_components'

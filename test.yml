@@ -1,0 +1,11 @@
+# ansible-playbook test.yml -i test.hosts
+# ./prometheus/prometheus --config.file=./prometheus/prometheus.yml --storage.tsdb.path ./prometheus/data
+
+- hosts: all
+  # become: True
+  tasks:
+    - include: 'tasks/main.yml'
+  handlers:
+    - include: 'handlers/main.yml'
+  vars_files:
+    - 'defaults/main.yml'

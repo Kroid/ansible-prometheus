@@ -1,0 +1,24 @@
+---
+
+prometheus_install_components:
+  - prometheus
+  - alertmanager
+  - node_exporter
+
+prometheus_version:                 2.11.1
+prometheus_alertmanager_version:    0.18.0
+prometheus_node_exporter_version:   0.18.1
+
+prometheus_archive_name:                 'prometheus-{{ prometheus_version }}.linux-amd64.tar.gz'
+prometheus_alertmanager_archive_name:    'alertmanager-{{ prometheus_alertmanager_version }}.linux-amd64.tar.gz'
+prometheus_node_exporter_archive_name:   'node_exporter-{{ prometheus_node_exporter_version }}.linux-amd64.tar.gz'
+
+prometheus_url: 'https://github.com/prometheus/prometheus/releases/download/v{{ prometheus_version }}/{{ prometheus_archive_name }}'
+prometheus_alertmanager_url: 'https://github.com/prometheus/alertmanager/releases/download/v{{ prometheus_alertmanager_version }}/{{ prometheus_alertmanager_archive_name }}'
+prometheus_node_exporter_url: 'https://github.com/prometheus/node_exporter/releases/download/v{{ prometheus_node_exporter_version }}/{{ prometheus_node_exporter_archive_name }}'
+
+prometheus_install_path: '/home/{{ ansible_user }}/prometheus'
+prometheus_alertmanager_install_path: '/home/{{ ansible_user }}/prometheus-alertmanager'
+prometheus_node_exporter_install_path: '/home/{{ ansible_user }}/prometheus-node-exporter'
+
+prometheus_data_path: '{{ prometheus_install_path }}/data'

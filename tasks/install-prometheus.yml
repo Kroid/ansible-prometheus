@@ -1,0 +1,23 @@
+---
+
+- name: Download prometheus from {{ prometheus_url }}
+  get_url:
+    url: '{{ prometheus_url }}'
+    dest: '/home/{{ ansible_user }}'
+
+- name: Create {{ prometheus_install_path }} dir
+  file:
+    path: '{{ prometheus_install_path }}'
+    state: directory
+
+- name: Extract {{ prometheus_archive_name }}
+  unarchive:
+    src:  '/home/{{ ansible_user }}/{{ prometheus_archive_name }}'
+    dest: '{{ prometheus_install_path }}'
+    remote_src: True
+    extra_opts: [--strip-components=1]
+
+- name: Remove {{ prometheus_archive_name }} archive
+  file:
+    path: '/home/{{ ansible_user }}/{{ prometheus_archive_name }}'
+    state: absent
